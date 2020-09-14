@@ -3,7 +3,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/*Generar un array de numeros dada una entrada en string tal que:
+/* Generate an array of Int from a String passed as parameter.
+        Input -> Output
         ‘2’ -> [2]
         ‘2, 5, 8’ -> [2, 5, 8]
         ‘5-10’ -> [5, 6, 7, 8, 9, 10]
@@ -18,14 +19,14 @@ public class GenerateArray {
         String[] inputSeparatedByCommas = separateBy(input, ",");
 
         for(int i = 0; i < inputSeparatedByCommas.length; i++) {
-            int indexRange = getIndexOf(inputSeparatedByCommas[i], "-");
-            boolean notARange = indexRange < 0;
+            int rangeIndex = getIndexOf(inputSeparatedByCommas[i], "-");
+            boolean notARange = rangeIndex < 0;
             if (notARange) {
                 addNonRangeElement(output, Integer.parseInt(inputSeparatedByCommas[i]));
             } else {
                 String[] rangeSeparated = separateBy(inputSeparatedByCommas[i], "-");
-                int indexSkips = getIndexOf(inputSeparatedByCommas[i], ":");
-                boolean noSkips = indexSkips < 0;
+                int skipsIndex = getIndexOf(inputSeparatedByCommas[i], ":");
+                boolean noSkips = skipsIndex < 0;
                 if (noSkips) {
                     addRangeWithNoSkips(output, rangeSeparated);
                 } else {
